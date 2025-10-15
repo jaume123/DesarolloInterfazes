@@ -1,0 +1,29 @@
+﻿# Node / JS
+node_modules/
+dist/
+build/
+out/
+.cache/
+.tmp/
+*.log
+
+# Entornos / secretos
+.env
+.env.*
+!.env.example
+
+# SO / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Binarios y artefactos pesados
+*.exe
+*.dll
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.mp4
+*.mov

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Exercici 4.4</title>
+<script type="text/javascript">
+
+function generate() {
+
+let div1 = document.getElementById('firstDiv')
+let div2 = document.getElementById('secondDiv')
+div1.innerHTML = Math.floor(Math.random() * 10);
+div2.innerHTML = Math.floor(Math.random() * 10); 
+}
+
+function compare() {
+let div1 = document.getElementById('firstDiv');
+let div2 = document.getElementById('secondDiv');
+let div3 = document.getElementById('thirdDiv')
+let n1 = Number(div1.textContent);
+let n2 = Number(div2.textContent);
+if (n1 >= n2 ) {
+	 div3.textContent = div1.textContent;
+}else if (n2 > n1 ){
+	 div3.textContent = div2.textContent;
+}
+
+}
+</script>
+<style type="text/css">
+#firstDiv, #secondDiv, #thirdDiv {
+	width: 150px; height: 150px; border: thin solid silver;
+	background: #F5F5F5; float: left; margin:20px; font-size: 6em; color: #333; 
+	text-align:center; padding: 5px; font-family:Arial, Helvetica, sans-serif;}
+#firstDiv p, #secondDiv p, #thirdDiv p {margin:.2em 0;}
+#thirdDiv {margin-left:1.3em; border-color: black;}
+.clear {clear:both;}
+#compare {margin-left:11em;}
+#generate {font-size:1.2em; margin-left:8em;}
+</style>
+</head>
+<body>
+<input id="generate" type="button" value="�� Generar !!" onclick="generate()" />
+<div id="firstDiv"></div>
+<div id="secondDiv"></div>
+<div class="clear"></div>
+<input id="compare" type="button" value="<< Comparar >>" onclick="compare()" />
+<div id="thirdDiv"></div>
+</body>
+</html>

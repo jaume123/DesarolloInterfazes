@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <title>exemple de
+        CreateElement()</title>
+
+</head>
+<p > Esta es una prueba de valor uno </p>
+<body>
+    <script>
+        var op = document.createElement("p");
+        var otext = document.createTextNode("Hola mundo");
+        var op2 =  document.getElementsByTagName('p');
+        op.appendChild(otext);
+        op2.innerHTML += "Prueba exitosa"
+        if (op.hasChildNodes) {
+            
+            var otext2 = document.createTextNode("Se ha remplazado al hola mundo")
+            op.replaceChild(otext2, otext)
+        }
+  //Se puede usar de dos maneras con el + para  agregar el texto al final sin sustituirlo   o sin el + 
+ op.innerHTML +=  " ,Como estas";
+        document.body.appendChild(op);
+        document.boy.appendChild(op2);  
+
+    </script>
+</body>
+
+</html>

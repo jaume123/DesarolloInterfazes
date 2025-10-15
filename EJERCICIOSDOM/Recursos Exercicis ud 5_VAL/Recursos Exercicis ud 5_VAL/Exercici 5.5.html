@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+    </head>
+    <body>
+		<input type="button" onclick="makeTable();" value="Crear Taula" >
+	</body>
+  <script >
+    // 🔹 Función que crea la tabla
+    function makeTable() {
+      // Limpia cualquier tabla anterior
+      document.body.querySelector("table")?.remove();
+
+      let body = document.body;
+      let tabla = document.createElement('table');
+      let cont = 0;
+
+      // Bucle de 100 filas
+      for (let fila = 0; fila < 5; fila++) {
+        let tr = document.createElement('tr');
+
+        // Bucle de 100 columnas
+        for (let col = 0; col < 20; col++) {
+          cont++; // número de celda
+          let td = document.createElement('td');
+          td.innerText = cont;
+
+          // Si el número es primo, color amarillo
+          if (primeNumber(cont)) {
+            td.style.backgroundColor = "yellow";
+          }
+
+          tr.appendChild(td);
+        }
+
+        tabla.appendChild(tr);
+      }
+
+      body.appendChild(tabla);
+    }
+   function primeNumber(value) {
+      if (value < 2) return false;        // 0 y 1 no son primos
+      for (let i = 2; i <= Math.sqrt(value); i++) {
+        if (value % i === 0) return false; // si es divisible, no es primo
+      }
+      return true; // si no se encontró divisor, es primo
+    }
+   
+  </script>
+</html>

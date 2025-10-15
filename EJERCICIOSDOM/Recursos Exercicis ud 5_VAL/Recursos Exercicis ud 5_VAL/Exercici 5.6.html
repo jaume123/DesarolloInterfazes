@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript">
+		function AgregarEmpleado() {
+		
+			let bodytable = document.getElementById('employeetable')
+			let  NuevoTrabajador = document.createElement('tr')
+			let newName = document.createElement('td')
+			let name = document.getElementById('name');
+			let newEmail = document.createElement('td')
+			let Email = document.getElementById('email')
+			let NewSalary = document.createElement('td')
+			
+			let Salary = document.getElementById('salary')
+			let deleteButton = document.createElement('td')
+			let propieteA = document.createElement('a')
+			newName.innerHTML = name.value;
+			newEmail.innerHTML = Email.value;
+			NewSalary.innerHTML = Salary.value;
+			propieteA.setAttribute('href',"#")
+			propieteA.innerHTML = "Delete"
+			propieteA.setAttribute('onclick','BorrarUsuario(this)')
+			deleteButton.append(propieteA)
+			NuevoTrabajador.append(newName,newEmail,NewSalary,deleteButton)
+			bodytable.append(NuevoTrabajador);
+		}
+		function BorrarUsuario(value){
+			let fila = value.parentNode.parentNode;
+			fila.remove()
+		}
+	</script>>
+</head>
+
+<body>
+	<center>
+		<br> <br> Agregar nuevo empleado <br><br> name: <input type="text" name="name" id="name" />&nbsp;&nbsp; email:
+		<input type="text" name="email" id="email" />
+		&nbsp;&nbsp; salary: <input type="text" name="salary" id="salary" value="" /> <br> <br>
+		<button id="addEmpButton" onclick="AgregarEmpleado()">Submit</button>
+		<br> <br>
+		<hr>
+		<br> <br>
+
+		<table id="employeetable" border="1" cellpadding="5" cellspacing="">
+			<tbody>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Salary</th>
+					<th>&nbsp;</th>
+				</tr>
+				<tr>
+					<td>Tom</td>
+					<td>[email protected].com</td>
+					<td>5000</td>
+					<td><a href="">Delete</a></td>
+				</tr>
+				<tr>
+					<td>Jerry</td>
+					<td>[email protected].com</td>
+					<td>8000</td>
+					<td><a href="">Delete</a></td>
+				</tr>
+				<tr>
+					<td>Bob</td>
+					<td>[email protected].com</td>
+					<td>10000</td>
+					<td><a href="">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</center>
+</body>
+
+</html>

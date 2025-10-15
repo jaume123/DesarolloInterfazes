@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Factura</title>
+</head>
+
+<body>
+    <div id="out"></div>
+
+    <script>
+        class Articulo {
+            #descripcion
+            #precio
+            getDescrip = () => this.#descripcion
+            getPrecio = () => this.#precio
+
+            constructor(descripcion, precio) {
+                this.#descripcion = descripcion;
+                this.#precio = precio;
+
+            }
+            toString() {
+                return `Articulo:<br>
+        Descripción: ${this.#descripcion}<br>
+        Precio: ${this.#precio}<br>`
+       
+            }
+        }
+
+        class Person {
+            #nom
+            #apellidos
+            #DNI
+            #direccion
+
+
+
+            constructor(nom, apellidos, DNI, direccion) {
+                this.#nom = nom;
+                this.#apellidos = apellidos;
+                this.#DNI = DNI;
+                this.#direccion = direccion;
+            }
+
+
+            getNom = () => this.#nom;
+            getApellido = () => this.#apellidos;
+            getDNI = () => this.#DNI;
+            getDireccion = () => this.#direccion;
+
+            toString() {
+                return `Persona:<br>
+        Nombre: ${this.#nom}<br>
+        Apellidos: ${this.#apellidos}<br>
+        DNI: ${this.#DNI}<br>
+        Dirección: ${this.#direccion}<br>`;
+            }
+        }
+        class Element {
+            #Nomart
+            #cantidad
+            getArt = () => this.#Nomart
+            getCatidad = () => this.#cantidad
+
+            constructor(Nomart, cantidad) {
+                this.#Nomart = Nomart;
+                this.#cantidad = cantidad;
+            }
+
+
+        }
+
+        class Factura {
+            #nom
+            #direccion
+            #telefon
+            #nif
+            getNom = () => this.#nom
+            getdireccion = () => this.#direccion
+            getTelefon = () => this.#telefon
+            getNif = () => this.#nif
+            constructor(nom, direccion, telefon, nif) {
+                this.#nom = nom;
+                this.#direccion = direccion;
+                this.#telefon = telefon;
+                this.#nif = nif;
+            }
+            toString() {
+                return `Empresa:<br>
+        Nombre: ${this.nom}<br>
+        Teléfono: ${this.telefon}<br>
+        NIF: ${this.nif}<br>
+        Dirección: ${this.direccion}<br>`;
+            }
+
+        }
+
+        const jaime = new Person("Jaime", "Ferrer Haro", "47408643P", "Calle del rio 29");
+        const Articulo1 = new Articulo("Botella de agua",1)
+         const Articulo2 = new Articulo("Cerveza",2)
+          const Articulo3 = new Articulo("Vodka",20)
+
+     let ListaElementos = [
+        Articulo1 , Articulo2 
+     ]
+
+        document.write(jaime.toString()  );
+        document.write(Articulo1.toString())
+
+
+
+        // Mejor que document.write:
+        document.getElementById('out').innerHTML = factura1.toString();
+
+        // Si igual quieres usar document.write, ojo con ejecutar el método:
+        // document.write(jaime.toString());
+    </script>
+</body>
+
+</html>

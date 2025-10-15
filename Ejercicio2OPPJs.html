@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejecicio2</title>
+</head>
+
+<body>
+    <script>
+        /* Definir en Javascript els següents objectes : - Animal : Té com a atributs (propietats) el nom, l'espècie, el nombre de pates i si té cua.
+ Definir els mètodes getter i setter. - Vaca : Té tots els atributs d'Animal i un altre en què es controle la llet que proporciona. A
+ més dels mètodes getter i setter, tindrà un altre mètode que actualitze al nombre de litres 
+obtinguts cada vegada que es muny
+ Com a alternativa es podria passar al constructor d'esta classe el nombre de litres que 
+s'estimen que proporcione la vaca i una vegada munyida la vaca descomptar els litres 
+proporcionats. - Tigre : Té tots els atributs d'Animal i un altre en què es comptabilitze el nombre de 
+víctimes caçades. A més dels mètodes getter i setter, tindrà un altre mètode que actualitze el 
+nombre de victimes caçades
+            */
+        class Animal {
+            #nom
+            #especie
+            #NPatas
+            #TieneCola
+
+            constructor(nom, especie, NPatas, TCola) {
+                this.#nom = nom;
+                this.#especie = especie;
+                this.#NPatas = NPatas;
+                this.#TieneCola = TCola;
+            }
+
+            //Getters 
+
+            getNom = _ => this.#nom;
+            getEspecie = _ => this.#especie;
+            getNPatas = _ => this.#NPatas;
+            getTieneCol = _ => this.#TieneCola;
+
+            //Setters 
+            SetNom = (values) => { this.#nom = value };
+            SetEspecie = (values) => { this.#especie = values };
+            SetNPatas = (values) => { this.#NPatas = values };
+            SetTieneCol = (values) => { this.#TieneCola = values };
+
+        }
+
+        class Tigre extends Animal {
+            #ContadorVictimes
+
+            constructor(nom, especie, pates, cua, ContadorVictimes) {
+                super(nom, especie, pates, cua)
+                this.#ContadorVictimes = ContadorVictimes;
+            }
+            //Getter 
+            getContadorVictimes = _ => this.#ContadorVictimes;
+
+            //Setter 
+            SetVictimes = (values) => {
+                this.#ContadorVictimes = values;
+            }
+            Victimes(values){
+                let victimes = this.getContadorVictimes  + values;
+                this.SetVictimes(victimes);
+            }
+        }
+
+        class Vaca extends Animal {
+            #LitresLLet
+
+            constructor(nom, especie, pates, cua, LitresLLet) {
+                super(nom, especie, pates, cua)
+                this.#LitresLLet = LitresLLet;
+            }
+            //Getter 
+            getLLet = _ => this.#LitresLLet;
+
+            //Setter 
+            SetLLet = (values) => {
+                this.#LitresLLet = values;
+            }
+            munyida(values) {
+                let LecheRestant = this.getLLet() - values;
+                this.SetLLet(LecheRestant);
+            }
+
+        }
+
+        let vaca1 = new Vaca("Muu", "Vaca lechero", " 4", "si", 15)
+                let Tigre1 = new Vaca("Tigreee", "Tigre ", " 4", "si", 200)
+        let lechemuyida = prompt("Cuanta leche quieres munyir de  la vaca ?  , Leche disponible de la vaca : " + vaca1.getLLet())
+        lechemuyida = parseInt(lechemuyida);
+
+        vaca1.munyida(lechemuyida)
+        document.write(vaca1.getNom() + " Litros de llet dispoible de la vaca " + vaca1.getLLet())
+        document.write(Tigre1.getNom())
+;    </script>
+</body>
+
+</html>
