@@ -73,22 +73,22 @@
 
 <body>
     <div class="contenedor">
-        <h1><img onclick="mostrar()" src="carrito2.jpg" width="75">Carrito de la compra</h1>
+        <h1><img onclick="mostrar()                " src="carrito2.jpg" width="75">Carrito de la compra</h1>
         <div id="alta">
             <h1>Alta de articulo : </h1>
             <p>Producto&nbsp;<input type="text" id="producto2"></p>
             <p>Precio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="precio2"></p>
-            <p><button class="verde" type="button">Añadir Producto</button></p>
+            <p><button class="verde" type="button" onclick="AltaProducto()">Añadir Producto</button></p>
             <p onclick="mostrar()" style="text-align: right;color:red"><b>X</b></p>
         </div>
         <div style="margin:10px">
             <pre>     Producto                   Precio                    Unidades              Importe</pre>
             <select name="producto" id="producto">
             <option selected="selected">Seleccione un producto...</option></select>
-            <input type="text" id="precio">
-            <input type="text" id="unidades">
-            <input type="text" id="importe">
-            <button class="verde" type="button">Añadir a la cesta</button>
+            <input type="text" id="precio" readonly>
+            <input type="text" id="unidades" >
+            <input type="text" id="importe" readonly>
+            <button class="verde" type="button" onclick="AñadirProductoTabla()">Añadir a la cesta</button>
         </div>
         <hr>
         <div class="container">
@@ -109,7 +109,7 @@
                     <tfoot id="tfoot"><tr><td></td><td></td><td>Total</td><td align="right">0.00</td><td style="width:15px"></td></tr></tfoot>
                 </table>
                 <div class="form-group">
-                    <button type="button" class="btn btn-danger">Borrar cesta</button>
+                    <button type="button" class="btn btn-danger" onclick="borrarCesta()">Borrar cesta</button>
                 </div>
 
             </div>
@@ -119,6 +119,7 @@
 <script type="module">
  
  import Producto from './Producto.js'
+ import Carrito from './Carrito.js'
 
         // Muestra y oculta la division de alta de productos
         function mostrar() {
@@ -131,5 +132,94 @@
 
         }
         window.mostrar = mostrar;
+        window.AltaProducto = AltaProducto;
+        window.AñadirProductoTabla = AñadirProductoTabla;
+        window.borrarProductoTabla = borrarProductoTabla;
+        window.borrarCesta = borrarCesta;
+function AltaProducto() {
+         let nombre = document.getElementById("producto2").value;
+         let precio = parseFloat(document.getElementById("precio2").value);
+         let producto = new Producto(nombre, precio, "");
+         let carrito = new Carrito();
+            carrito.agregarProducto(producto);
+            for(let i = 0 ; i < carrito.getProductos().length; i++){
+                console.log(carrito.getProductos()[i].getNombre() + " Precio: " + carrito.getProductos()[i].getPrecio()); 
+        }
+       ListaProductos(producto);
+    }
+function ListaProductos(Producto){
+let OpSelect = document.getElementById("producto");
+    let Op = document.createElement("option");
+    Op.text = Producto.getNombre();
+    Op.value = Producto.getNombre();
+    Op.setAttribute("data-precio", Producto.getPrecio()); // <--- Asigna el precio como atributo
+    OpSelect.add(Op);
+
+
+}
+function ImportTotal(){
+   let precio = document.getElementById("precio").value;
+    let unidades = document.getElementById("unidades").value;
+    let importe = parseFloat(precio) * parseInt(unidades);
+    let importatotal = document.getElementById("importe");
+    let p = document.createTextNode(importe.toFixed(2));
+    importatotal.value = importe.toFixed(2);
+
+}
+// calculo de importe
+ const precioInput = document.getElementById("precio");
+ const unidadesInput = document.getElementById("unidades");
+ const importeInput = document.getElementById("importe");
+ const selectProducto = document.getElementById("producto");
+    precioInput.addEventListener("input", ImportTotal);
+    unidadesInput.addEventListener("input", ImportTotal);
+    selectProducto.addEventListener("change", function() {
+        const selectedOption = selectProducto.options[selectProducto.selectedIndex];
+        const precio = selectedOption.getAttribute("data-precio");
+        precioInput.value = precio;
+        ImportTotal();}
+    );
+
+    function AñadirProductoTabla(){
+        let tabla = document.getElementById("tabla").getElementsByTagName('tbody')[0];
+        let newRow = tabla.insertRow();
+        let celda1 = newRow.insertCell(0);
+        let celda2 = newRow.insertCell(1);
+        let celda3 = newRow.insertCell(2);
+        let celda4 = newRow.insertCell(3);
+        let celda5 = newRow.insertCell(4);
+
+        celda1.innerHTML = document.getElementById("producto").value;
+        celda2.innerHTML = document.getElementById("precio").value;
+        celda3.innerHTML = document.getElementById("unidades").value;
+        celda4.innerHTML = document.getElementById("importe").value;
+        celda5.innerHTML = '<button class="rojo" type="button" onclick="borrarProductoTabla()">X</button>';
+       CalcularImporteTabla()
+    }
+    function CalcularImporteTabla(){
+        let tabla = document.getElementById("tabla").getElementsByTagName('tbody')[0];
+        let total = document.getElementById("tfoot").rows[0].cells[3].innerHTML = 0;
+
+        for (let i = 0; i < tabla.rows.length; i++) {
+            let importe = parseFloat(tabla.rows[i].cells[3].innerHTML);
+            total += importe;
+        }
+        let tfoot = document.getElementById("tfoot");
+        tfoot.rows[0].cells[3].innerHTML = total.toFixed(2);
+    }
+
+    function borrarProductoTabla(){
+        let tabla = document.getElementById("tabla").getElementsByTagName('tbody')[0];
+        tabla.deleteRow(event.target.parentNode.parentNode.rowIndex - 1);
+        CalcularImporteTabla()
+    }
+
+function borrarCesta(){
+    let tabla = document.getElementById("tabla").getElementsByTagName('tbody')[0];
+    while(tabla.rows.length > 0){
+        tabla.deleteRow(0);
+    }
+    CalcularImporteTabla()
+}
 </script>
 </body></html>

@@ -1,13 +1,35 @@
-export default class Producto{
-#Nombre
-#Precio
-#Descripcion
- Producto(nombre , precio ,descripcion){
-    this.#Nombre = nombre;
-    this.#Descripcion = descripcion;
-    this.#Precio = precio;
- }
+export default class Producto {
+  #nombre
+  #precio
+  #descripcion
 
- getNombre = () => this.#Nombre;
- setNombre = (value) => this.#Nombre = value; 
+  constructor(nombre, precio, descripcion = '') {
+    this.#nombre = nombre;
+    this.#precio = Number(precio) || 0;
+    this.#descripcion = descripcion;
+  }
+
+  getNombre() {
+    return this.#nombre;
+  }
+
+  getPrecio() {
+    return this.#precio;
+  }
+
+  getDescripcion() {
+    return this.#descripcion;
+  }
+
+  setNombre(value) {
+    this.#nombre = value;
+  }
+
+  setPrecio(value) {
+    this.#precio = Number(value) || 0;
+  }
+
+  setDescripcion(value) {
+    this.#descripcion = value;
+  }
 }
