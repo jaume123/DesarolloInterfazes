@@ -1,0 +1,30 @@
+[
+  {
+    "Nombre": "Patata",
+    "Precio": 3
+  },
+  {
+    "Nombre": "Lechuga",
+    "Precio": 2
+  },
+  {
+    "Nombre": "Cebolla",
+    "Precio": 1.5
+  },
+  {
+    "Nombre": "Banana",
+    "Precio": 10
+  },
+  {
+    "Nombre": "Melocoton",
+    "Precio": 10
+  },
+  {
+    "Nombre": "jamon",
+    "Precio": 100
+  },
+  {
+    "Nombre": "MelocotonExotico",
+    "Precio": 100
+  }
+]
